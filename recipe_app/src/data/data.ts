@@ -6,7 +6,8 @@ export const recipeList = [
     mealType: 'Dessert',
     description:
       'A rich, individual chocolate cake with a soft, gooey center that flows like lava when you cut into it. Made with dark chocolate, butter, sugar, eggs, and a touch of flour, it’s baked just long enough for the outside to set while keeping the inside deliciously molten. Best served warm, often with vanilla ice cream or fresh berries.',
-    image: '@/assets/images/lava-cake.jpg',
+    image:
+      'https://www.allrecipes.com/thmb/dfGgVmzpoHhrsLjxGBa_0rIWyq0=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/276304lava-cakeKim-e03d3bc55516400e8d05b8d84b524b73.jpg',
     seen: false,
     liked: false,
   },

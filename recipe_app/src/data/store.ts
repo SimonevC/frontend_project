@@ -5,6 +5,7 @@ import type { Recipe } from '@/recipe'
 
 const recipeStorage = localStorage.getItem('recipes')
 let loadFromStorage = recipeList
+
 if (recipeStorage) {
   loadFromStorage = JSON.parse(recipeStorage)
 }
