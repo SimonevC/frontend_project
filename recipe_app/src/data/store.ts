@@ -1,6 +1,7 @@
 import { reactive } from 'vue'
 import { watchEffect } from 'vue'
 import { recipeList } from './data'
+import type { Recipe } from '@/recipe'
 
 const recipeStorage = localStorage.getItem('recipes')
 let loadFromStorage = recipeList
@@ -10,20 +11,18 @@ if (recipeStorage) {
 
 export const store = reactive({
   recipes: loadFromStorage,
-  like(recipe) {
+  like(recipe: Recipe) {
     recipe.liked = true
   },
 
-  dislike(recipe) {
+  dislike(recipe: Recipe) {
     recipe.liked = false
   },
 
-  // Filter recepten die nog niet beoordeeld zijn
   getUndisplayedRecipes() {
     return store.recipes.filter((r) => r.liked === undefined)
   },
 
-  // Alle gelikede recepten
   getLikedRecipes() {
     return store.recipes.filter((r) => r.liked === true)
   },
