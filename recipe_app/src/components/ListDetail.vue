@@ -6,7 +6,7 @@ const { items } = defineProps(['items'])
 const currentItemIndex = ref<number | undefined>()
 const router = useRouter()
 
-function setCurrentAirport(index: number) {
+function setCurrentItem(index: number) {
   currentItemIndex.value = index
   router.push({ path: '/manage/' + index })
 }
@@ -19,14 +19,18 @@ function backToList() {
 <template>
   <div class="container" :class="{ selected: currentItemIndex != undefined }">
     <div class="list">
-      <div class="list_item" v-for="(recipe, index) in recipes" :key="index">
+      <div
+        class="list_item"
+        @click="() => setCurrentItem(index)"
+        v-bind:key="item"
+        v-for="(item, index) in items"
+      >
         <slot name="list_item" v-bind="item"></slot>
       </div>
       <slot name="list_actions" />
     </div>
     <div class="details">
       <button class="back" @click="backToList">← Back</button>
-      <h2>Airport</h2>
       <slot name="details" :items="items" :index="currentItemIndex"></slot>
     </div>
     <slot name="detail_actions" />
@@ -51,5 +55,9 @@ function backToList() {
 
 .active {
   font-weight: bold;
+}
+
+.back {
+  display: none;
 }
 </style>

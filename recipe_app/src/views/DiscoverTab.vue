@@ -6,11 +6,11 @@ import PrettyButton from '@/components/PrettyButton.vue'
 
 <template>
   <ListDetail :items="store.recipes">
-    <template #list_item="{ name, cookingTime, steps, mealType, description, image }">
-      <span>{{ name }}</span>
-      <span>{{ cookingTime }}, {{ steps }} {{ mealType }}</span>
-      <span>{{ description }}</span>
-      <span>{{ image }}</span>
+    <template #list_item="{ item }">
+      <span>{{ item.name }}</span>
+      <span>{{ item.cookingTime }}, {{ item.steps }} {{ item.mealType }}</span>
+      <span>{{ item.description }}</span>
+      <span>{{ item.image }}</span>
     </template>
 
     <template #list_actions>
@@ -19,9 +19,23 @@ import PrettyButton from '@/components/PrettyButton.vue'
     </template>
 
     <template #details="{ items, index }">
-      <template v-if="index != undefined"> </template>
+      <template v-if="index != undefined">
+        <label>Name<input v-model="items[index].name" /></label>
+        <label>Cooking time<input v-model="items[index].cookingTime" /></label>
+        <label>Steps<input v-model="items[index].steps" /></label>
+        <label>Meal Type<input v-model="items[index].mealType" /></label>
+        <label>Description<input v-model="items[index].description" /></label>
+        <label>Image<input v-model="items[index].image" /></label>
+      </template>
     </template>
   </ListDetail>
 </template>
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0.2rem;
+}
+</style>

@@ -3,8 +3,8 @@ import { ref } from 'vue'
 import PrettyBackground from '@/components/PrettyBackground.vue'
 import HeaderTabs from '@/components/HeaderTabs.vue'
 import DiscoverTab from './DiscoverTab.vue'
-import LikedRecipesTab from './LikedRecipesTab.vue'
-import ShoppingListTab from './ShoppingListTab.vue'
+// import LikedRecipesTab from './LikedRecipesTab.vue'
+// import ShoppingListTab from './ShoppingListTab.vue'
 
 const offline = ref(false)
 
@@ -22,8 +22,8 @@ window.addEventListener('online', () => {
     <PrettyBackground></PrettyBackground>
     <HeaderTabs>
       <template #discover><DiscoverTab /></template>
-      <template #liked><LikedRecipesTab /></template>
-      <template #shopping><ShoppingListTab /></template>
+      <!-- <template #liked><LikedRecipesTab /></template> -->
+      <!-- <template #shopping><ShoppingListTab /></template> -->
     </HeaderTabs>
   </main>
 </template>
