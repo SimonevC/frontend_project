@@ -14,7 +14,7 @@ function setCurrentTab(newTabName: string) {
 <template>
   <div>
     <header class="header">
-      <h1>Flightly</h1>
+      <h1>Recipes</h1>
       <nav>
         <div class="icons">
           <div
