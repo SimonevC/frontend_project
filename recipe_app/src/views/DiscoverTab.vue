@@ -24,7 +24,7 @@ function dislikeCurrent() {
 </script>
 
 <template>
-  <ListDetail :items="store.recipes">
+  <ListDetail :items="recipes">
     <template #list_item="{ item }">
       <span>{{ item.name }}</span>
       <span>{{ item.cookingTime }}, {{ item.steps }} {{ item.mealType }}</span>

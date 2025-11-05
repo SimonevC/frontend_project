@@ -10,8 +10,10 @@ if (recipeStorage) {
   loadFromStorage = JSON.parse(recipeStorage)
 }
 
+const reactiveRecipes = loadFromStorage.map((r) => reactive(r))
+
 export const store = reactive({
-  recipes: loadFromStorage,
+  recipes: reactiveRecipes,
   like(recipe: Recipe) {
     recipe.liked = true
   },
