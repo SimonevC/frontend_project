@@ -6,25 +6,20 @@ const { items } = defineProps(['items'])
 const currentItemIndex = ref<number | undefined>()
 const router = useRouter()
 
-// function setCurrentAirport(index: number) {
-//   currentItemIndex.value = index
-//   router.push({ path: '/manage/' + index })
-// }
+function setCurrentAirport(index: number) {
+  currentItemIndex.value = index
+  router.push({ path: '/manage/' + index })
+}
 
-// function backToList() {
-//   currentItemIndex.value = undefined
-// }
+function backToList() {
+  currentItemIndex.value = undefined
+}
 </script>
 
 <template>
   <div class="container" :class="{ selected: currentItemIndex != undefined }">
     <div class="list">
-      <div
-        class="list_item"
-        @click="() => setCurrentAirport(index)"
-        v-bind:key="item"
-        v-for="(item, index) in items"
-      >
+      <div class="list_item" v-for="(recipe, index) in recipes" :key="index">
         <slot name="list_item" v-bind="item"></slot>
       </div>
       <slot name="list_actions" />
