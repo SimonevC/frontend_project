@@ -1,7 +1,26 @@
 <script setup lang="ts">
 import ListDetail from '@/components/ListDetail.vue'
-import { store } from '@/data/store'
 import PrettyButton from '@/components/PrettyButton.vue'
+import { store } from '@/data/store'
+import { ref } from 'vue'
+
+const currentRecipe = ref(store.getUndisplayedRecipes()[0])
+
+function showNextRecipe() {
+  const recipes = store.getUndisplayedRecipes()
+  const randomIndex = Math.floor(Math.random() * recipes.length)
+  currentRecipe.value = recipes[randomIndex]
+}
+
+function likeCurrent() {
+  store.like(currentRecipe.value)
+  showNextRecipe()
+}
+
+function dislikeCurrent() {
+  store.dislike(currentRecipe.value)
+  showNextRecipe()
+}
 </script>
 
 <template>
@@ -14,11 +33,11 @@ import PrettyButton from '@/components/PrettyButton.vue'
     </template>
 
     <template #list_actions>
-      <PrettyButton type="like">Like</PrettyButton>
-      <PrettyButton type="dislike">Dislike</PrettyButton>
+      <PrettyButton type="like" @click="likeCurrent">Like</PrettyButton>
+      <PrettyButton type="dislike" @click="dislikeCurrent">Dislike</PrettyButton>
     </template>
 
-    <template #details="{ items, index }">
+    <template v-if="currentRecipe" #details="{ items, index }">
       <template v-if="index != undefined">
         <label>Name<input v-model="items[index].name" /></label>
         <label>Cooking time<input v-model="items[index].cookingTime" /></label>
