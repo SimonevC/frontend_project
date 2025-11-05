@@ -1,0 +1,194 @@
+include components-v1
+
+h1 "Home / Discover Recipes"
+
+Phone id=home title="Recipe App" notes="""
+    Main screen where users can browse or search recipes.
+"""
+
+    panel =
+        Button link=home content="Home" icon=home
+        Button link=favorites content="Liked Recipes" icon=heart
+        Button link=shopping_list content="Shopping List" icon=list
+
+    content =
+        h2 "Discover Recipes"
+
+        h4 "Spaghetti Carbonara"
+        p "15 min • 5 steps • Dinner • 4.8★"
+        p "[Small description of recipe]"
+        p "[Image placeholder: Spaghetti Carbonara]"
+        Button link=favorites content="Like"
+        Button link=home_2 content="Dislike"
+
+h1 "Home / Discover Recipes"
+
+Phone id=home_2 title="Recipe App" notes="""
+    Main screen where users can browse or search recipes. Version 2 with new recipe
+"""
+
+    panel =
+        Button link=home content="Home" icon=home
+        Button link=favorites content="Liked Recipes" icon=heart
+        Button link=shopping_list content="Shopping List" icon=list
+
+    content =
+
+        h2 "Discover recipes"
+
+        h4 "Chocolate Lava Cake"
+        p "25 min • 5 steps • Desert • 4.5★"
+        p "[Small description of recipe]"
+        p "[Image placeholder: Chocolate Lava Cake]"
+        Button link=favorites content="Like"
+        Button link=home content="Dislike"
+
+
+h1 "Recipe Detail Screen Chocolate lava cake"
+
+Phone id=recipe_detail title="Chocolate Lava Cake" notes="""
+    Detailed recipe screen with step-by-step cooking instructions.
+"""
+
+    panel =
+        Button link=home content="Home" icon=home
+        Button link=favorites content="Liked Recipes" icon=heart
+        Button link=shopping_list content="List" icon=list
+
+    content =
+        h2 "Chocolate Lava Cake"
+        p "Prep time: 25 min • Difficulty: Medium"
+        p "[Image placeholder: Chocolate Lava Cake]"
+
+        h3 "Ingredients"
+        p "For [counter] people"
+        p "- 100g dark chocolate"
+        p "- 50g butter"
+        p "- 2 eggs"
+        p "- 2 tbsp sugar"
+        p "- 1 tbsp flour"
+
+        Input label="For how many people do you want to make your recipe?" value="2"
+        Button content="Add ingredients to shopping list" link=shopping_list
+
+        h3 "Step-by-step instructions"
+        p "1. Preheat oven to 200°C."
+        p "2. Melt chocolate and butter together."
+        p "3. Whisk eggs and sugar until light."
+        p "4. Combine mixtures and add flour."
+        p "5. Pour into ramekins and bake for 8 minutes."
+
+        Button content="Rate this recipe" link=rate_recipe
+        Button content="Share recipe" link=share_recipe
+        Button content="Unlike recipe" link=favorites
+
+h1 "Recipe Detail Screen"
+
+Phone id=recipe_detail_spaghetti title="Spaghetti Carbonara" notes="""
+    Detailed recipe screen with step-by-step cooking instructions.
+"""
+
+    panel =
+        Button link=home content="Home" icon=home
+        Button link=favorites content="Liked Recipes" icon=heart
+        Button link=shopping_list content="List" icon=list
+
+    content =
+        h2 "Spaghetti Carbonara"
+        p "Prep time: 15 min •  Difficulty: Easy"
+        p "[Image placeholder: Spaghetti Carbonara]"
+
+        h3 "Ingredients"
+        p "For [counter] people"
+        p "- 100g spaghetti"
+        p "- 1 egg"
+        p "- 40g Guanciale"
+        p "- 20g Parmezan cheese"
+        p "- pepper & salt"
+
+        Input label="For how many people do you want to make your recipe?" value="2"
+        Button content="Add ingredients to shopping list" link=shopping_list
+
+        h3 "Step-by-step instructions"
+        p "1. Cook the spaghetti in plenty of salted water until al dente."
+        p "2. Fry the guanciale over medium heat until the fat renders and the pieces turn crispy."
+        p "3. Whisk together the egg yolk, cheese, and plenty of black pepper in a bowl."
+        p "4. Drain the pasta, but keep a little of the cooking water (about 2 tablespoons)."
+        p "5. Toss the hot pasta with the guanciale (off the heat), then quickly mix in the egg mixture, adding a splash of the reserved cooking water"
+        p "6. Serve immediately, topped with extra cheese and black pepper."
+
+        Button content="Rate this recipe" link=rate_recipe
+        Button content="Share recipe" link=share_recipe
+        Button content="Unlike recipe" link=favorites
+
+h1 "My Saved Recipes"
+
+Phone id=favorites title="My Liked Recipes" notes="""
+    Screen showing user's liked recipes.
+"""
+
+    panel =
+        Button link=home content="Home" icon=home
+        Button link=favorites content="Liked Recipes" icon=heart
+        Button link=shopping_list content="List" icon=list
+
+    content =
+        h2 "Your liked recipes"
+
+        h4 "Chocolate Lava Cake"
+        p "25 min • 6 steps • 4.9★"
+        Button link=recipe_detail content="View Recipe"
+
+        h4 "Spaghetti Carbonara"
+        p "15 min • 5 steps • 4.8★"
+        Button link=recipe_detail content="View Recipe"
+
+        Button content="Discover more recipes" link=home
+
+
+h1 "Rate & Share Recipe"
+
+Phone id=rate_recipe title="Rate Recipe" notes="""
+    After completing a recipe, users can rate and share their experience.
+"""
+
+    panel =
+        Button link=home content="Home" icon=home
+        Button link=favorites content="Liked Recipes" icon=heart
+        Button link=shopping_list content="List" icon=list
+
+    content =
+        h2 "Rate 'Chocolate Lava Cake'"
+        p "How did it turn out?"
+
+        Input label="Your rating (1–5 stars)" value="5"
+        Button content="Submit rating" link=favorites
+
+        h3 "Share your recipe"
+        Button content="Share"
+
+
+h1 "Shopping List"
+
+Phone id=shopping_list title="Shopping List" notes="""
+    Adaptive layout optimized for mobile screens when browsing in-store.
+"""
+
+    panel =
+        Button link=home content="Home" icon=home
+        Button link=favorites content="Liked Recipes" icon=heart
+        Button link=shopping_list content="List" icon=list
+
+    content =
+        h2 "Your Shopping List"
+
+        CheckBox label="Butter (50g)" name=chocolate
+        CheckBox label="Eggs (2)" name=eggs
+        CheckBox label="Sugar (2 tbsp)" name=sugar
+        CheckBox label="Flour (1 tbsp)" name=flour
+
+        Button content="Clear shopping list"
+
+
+
+

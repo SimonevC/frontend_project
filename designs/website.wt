@@ -1,0 +1,136 @@
+include components-v1
+
+h1 "Home / Discover Recipes – Desktop"
+
+Computer id=home title="Recipe App" notes="""
+    Desktop layout with sidebar navigation and two-column recipe overview.
+"""
+
+    MenuBar
+        Button link=home content="Home"
+        Button link=favorites content="Liked Recipes"
+        Button link=shopping_list content="Shopping List"
+
+    content
+        h1 "Discover recipes"
+
+        h3 "Spaghetti Carbonara"
+        p "15 min • 5 steps • Dinner • 4.8★"
+        p "[Small description of recipe]"
+        p "[Image placeholder: Spaghetti Carbonara]"
+        Button link=favorites content="Like"
+        Button link=home content ="Dislike"
+
+
+h1 "Recipe Detail – Desktop"
+
+Computer id=recipe_detail title="Chocolate Lava Cake" notes="""
+    Wide layout showing image, ingredients, and steps side by side.
+"""
+
+    MenuBar
+        Button link=home content="Home"
+        Button link=favorites content="Liked Recipes"
+        Button link=shopping_list content="Shopping List"
+
+    content
+        h1 "Chocolate Lava Cake"
+        p "Prep time: 25 min • Serves 4 • Dinner • 4.3★"
+        p "[Large image placeholder: Chocolate Lava Cake]"
+
+        h2 "Ingredients"
+        p "For [counter] people"
+        p "- 100g dark chocolate"
+        p "- 50g butter"
+        p "- 2 eggs"
+        p "- 2 tbsp sugar"
+        p "- 1 tbsp flour"
+
+        Input label="For how many people do you want to make your recipe?" value="2"        
+        Button content="Add ingredients to shopping list" link=shopping_list
+
+        h2 "Instructions"
+        p "1. Preheat oven to 200°C."
+        p "2. Melt chocolate and butter together."
+        p "3. Whisk eggs and sugar until light."
+        p "4. Combine mixtures and add flour."
+        p "5. Pour into ramekins and bake for 8 minutes."
+
+        Button content="Rate this recipe" link=rate_recipe
+        Button content="Share recipe" link=share_recipe
+        Button content="Unlike recipe" link=favorites
+
+
+h1 "My Saved Recipes – Desktop"
+
+Computer id=favorites title="My Saved Recipes" notes="""
+    Desktop overview of saved recipes with thumbnails.
+"""
+
+    MenuBar
+        Button link=home content="Home"
+        Button link=favorites content="Liked Recipes"
+        Button link=shopping_list content="Shopping List"
+
+    content
+        h1 "Your Liked Recipes"
+
+        h3 "Chocolate Lava Cake"
+        p "25 min • 6 steps • 4.9★"
+        p "[Image: lava cake thumbnail]"
+        Button link=recipe_detail content="View Recipe"
+
+        h3 "Spaghetti Carbonara"
+        p "15 min • 5 steps • 4.8★"
+        p "[Image: pasta thumbnail]"
+        Button link=recipe_detail content="View Recipe"
+
+        Button content="Discover more recipes" link=home
+
+
+
+h1 "Rate & Share Recipe – Desktop"
+
+Computer id=rate_recipe title="Rate Recipe" notes="""
+    Allows users to rate and share a recipe after completion.
+"""
+
+    MenuBar
+        Button link=home content="Home"
+        Button link=favorites content="Liked Recipes"
+        Button link=shopping_list content="Shopping List"
+
+    content
+        h1 "Rate 'Chocolate Lava Cake'"
+        p "How did it turn out?"
+
+        Input label="Your rating (1–5 stars)" value="5"
+        Button content="Submit rating" link=favorites
+
+        h2 "Share your recipe"
+        Button content="Share"
+
+
+
+h1 "Shopping List – Desktop"
+
+Computer id=shopping_list title="Shopping List" notes="""
+    Wider layout for managing grocery list comfortably.
+"""
+
+    MenuBar
+        Button link=home content="Home"
+        Button link=favorites content="Liked Recipes"
+        Button link=shopping_list content="Shopping List"
+
+    content
+        h1 "Your Shopping List"
+
+        RadioButton label="Dark chocolate (100g)" name=chocolate
+        RadioButton label="Butter (50g)" name=butter
+        RadioButton label="Eggs (2)" name=egg
+        RadioButton label="Sugar (2 tbsp)" name=sugar
+        RadioButton label="Flour (1 tbsp)" name=flour
+
+        Button content="Clear checked items"
+
