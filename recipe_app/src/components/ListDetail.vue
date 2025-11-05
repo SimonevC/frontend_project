@@ -25,7 +25,7 @@ function backToList() {
         v-bind:key="item"
         v-for="(item, index) in items"
       >
-        <slot name="list_item" v-bind="item"></slot>
+        <slot name="list_item" :item="item"></slot>
       </div>
       <slot name="list_actions" />
     </div>
@@ -33,7 +33,7 @@ function backToList() {
       <button class="back" @click="backToList">← Back</button>
       <slot name="details" :items="items" :index="currentItemIndex"></slot>
     </div>
-    <slot name="detail_actions" />
+    <!-- <slot name="detail_actions" /> -->
   </div>
 </template>
 
