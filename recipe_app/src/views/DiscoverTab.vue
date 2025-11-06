@@ -26,40 +26,42 @@ function dislikeCurrent() {
 </script>
 
 <template>
-  <ListDetail :items="[currentRecipe]">
-    <div v-if="currentRecipe === null">
-      <h2>All recipes seen! 🎉</h2>
-    </div>
-    <template #list_item="{ item }">
-      <div class="recipe-card">
-        <h3 class="recipe-title">{{ item.name }}</h3>
-        <p class="recipe-meta">
-          Cooking time: {{ item.cookingTime }} minutes, Steps: {{ item.steps }}, Meal type:
-          {{ item.mealType }}
-        </p>
-        <p class="recipe-description">{{ item.description }}</p>
-        <img :src="item.image" class="recipe-image" />
+  <div class="discover-wrapper">
+    <ListDetail :items="[currentRecipe]">
+      <div v-if="currentRecipe == null">
+        <h2>All recipes seen! 🎉</h2>
       </div>
-    </template>
-
-    <template #list_actions>
-      <div class="action-buttons">
-        <PrettyButton type="dislike" :fab="true" @click="dislikeCurrent">Dislike</PrettyButton>
-        <PrettyButton type="like" @click="likeCurrent">Like</PrettyButton>
-      </div>
-    </template>
-
-    <template v-if="currentRecipe" #details="{ items, index }">
-      <template v-if="index != undefined">
-        <label>Name<input v-model="items[index].name" /></label>
-        <label>Cooking time<input v-model="items[index].cookingTime" /></label>
-        <label>Steps<input v-model="items[index].steps" /></label>
-        <label>Meal Type<input v-model="items[index].mealType" /></label>
-        <label>Description<input v-model="items[index].description" /></label>
-        <label>Image<img :src="items[index].image" /></label>
+      <template #list_item="{ item }">
+        <div class="recipe-card">
+          <h3 class="recipe-title">{{ item.name }}</h3>
+          <p class="recipe-meta">
+            Cooking time: {{ item.cookingTime }} minutes, Steps: {{ item.steps }}, Meal type:
+            {{ item.mealType }}
+          </p>
+          <p class="recipe-description">{{ item.description }}</p>
+          <img :src="item.image" class="recipe-image" />
+        </div>
       </template>
-    </template>
-  </ListDetail>
+
+      <template #list_actions>
+        <div class="action-buttons">
+          <PrettyButton type="dislike" :fab="true" @click="dislikeCurrent">Dislike</PrettyButton>
+          <PrettyButton type="like" @click="likeCurrent">Like</PrettyButton>
+        </div>
+      </template>
+
+      <template v-if="currentRecipe" #details="{ items, index }">
+        <template v-if="index != undefined">
+          <label>Name<input v-model="items[index].name" /></label>
+          <label>Cooking time<input v-model="items[index].cookingTime" /></label>
+          <label>Steps<input v-model="items[index].steps" /></label>
+          <label>Meal Type<input v-model="items[index].mealType" /></label>
+          <label>Description<input v-model="items[index].description" /></label>
+          <label>Image<img :src="items[index].image" /></label>
+        </template>
+      </template>
+    </ListDetail>
+  </div>
 </template>
 
 <style lang="css" scoped>
@@ -69,6 +71,16 @@ function dislikeCurrent() {
   gap: 10px;
   padding: 0.2rem;
 } */
+
+.discover-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* verticale centrering */
+  align-items: center;
+  min-height: 70vh; /* vult een groot deel van het scherm */
+  padding: 2rem;
+  gap: 1rem;
+}
 
 /* Card styling */
 .recipe-card {

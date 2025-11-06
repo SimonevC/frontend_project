@@ -1,11 +1,13 @@
 <script lang="ts">
+import ListDetail from '@/components/ListDetail.vue'
 import { store } from '@/data/store'
-import { computed } from 'vue'
 import type { Recipe } from '@/recipe'
+import PrettyButton from '@/components/PrettyButton.vue'
+import { ref } from 'vue'
 
-const likedRecipes = computed(() => store.recipes.filter((r) => r.liked === true))
+const likedRecipes = ref(store.getLikedRecipes)
 function unlike(recipe: Recipe) {
-  recipe.liked = undefined // zet terug naar onbeoordeeld
+  recipe.liked = undefined
 }
 </script>
 
@@ -13,15 +15,15 @@ function unlike(recipe: Recipe) {
   <div class="liked-tab">
     <h2>Liked Recipes</h2>
 
-    <ListDetail :items="likedRecipes">
+    <ListDetail :items="[likedRecipes]">
       <template #list_item="{ item }">
         <span>{{ item.name }}</span>
         <span>{{ item.cookingTime }} min | {{ item.steps }} steps | {{ item.mealType }}</span>
-        <img :src="item.image" alt="" style="max-width: 100px" />
+        <img :src="item.image" class="recipe-image" />
       </template>
 
       <template #list_actions>
-        <PrettyButton type="delete" @click="unlike(item)">Remove</PrettyButton>
+        <PrettyButton type="delete" @click="unlike">Remove</PrettyButton>
       </template>
 
       <template #details="{ item }">
