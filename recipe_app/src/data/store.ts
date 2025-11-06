@@ -3,11 +3,12 @@ import { watchEffect } from 'vue'
 import { recipeList } from './data'
 import type { Recipe } from '@/recipe'
 
-const recipeStorage = localStorage.getItem('recipes')
+const recipes = localStorage.getItem('recipes')
 let loadFromStorage = recipeList
 
-if (recipeStorage) {
-  loadFromStorage = JSON.parse(recipeStorage)
+if (recipes) {
+  loadFromStorage = JSON.parse(recipes)
+  console.log({ loadFromStorage })
 }
 
 const reactiveRecipes = loadFromStorage.map((r) => reactive(r))

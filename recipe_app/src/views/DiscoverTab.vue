@@ -24,12 +24,15 @@ function dislikeCurrent() {
 </script>
 
 <template>
-  <ListDetail :items="recipes">
+  <ListDetail :items="store.recipes">
     <template #list_item="{ item }">
-      <span>{{ item.name }}</span>
-      <span>{{ item.cookingTime }}, {{ item.steps }} {{ item.mealType }}</span>
-      <span>{{ item.description }}</span>
-      <span>{{ item.image }}</span>
+      <p>{{ item.name }}</p>
+      <p>
+        Cooking time: {{ item.cookingTime }} minutes, Steps: {{ item.steps }}, Meal type:
+        {{ item.mealType }}
+      </p>
+      <p>About:{{ item.description }}</p>
+      <img :src="item.image" />
     </template>
 
     <template #list_actions>
@@ -44,7 +47,7 @@ function dislikeCurrent() {
         <label>Steps<input v-model="items[index].steps" /></label>
         <label>Meal Type<input v-model="items[index].mealType" /></label>
         <label>Description<input v-model="items[index].description" /></label>
-        <label>Image<input v-model="items[index].image" /></label>
+        <label>Image<img :src="items[index].image" /></label>
       </template>
     </template>
   </ListDetail>
