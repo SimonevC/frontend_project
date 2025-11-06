@@ -33,7 +33,7 @@ function backToList() {
       <button class="back" @click="backToList">← Back</button>
       <slot name="details" :items="items" :index="currentItemIndex"></slot>
     </div>
-    <!-- <slot name="detail_actions" /> -->
+    <slot name="detail_actions" />
   </div>
 </template>
 
@@ -48,7 +48,6 @@ function backToList() {
 
 .list_item {
   cursor: pointer;
-  /* border: 1px solid white; */
   padding: 2rem;
   margin-bottom: 1rem;
 }

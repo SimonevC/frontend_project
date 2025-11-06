@@ -7,7 +7,7 @@ export const recipeList = [
     description:
       'A rich, individual chocolate cake with a soft, gooey center that flows like lava when you cut into it. Made with dark chocolate, butter, sugar, eggs, and a touch of flour, it’s baked just long enough for the outside to set while keeping the inside deliciously molten. Best served warm, often with vanilla ice cream or fresh berries.',
     image: '/public/images/lava-cake.jpg',
-    seen: false,
+    seen: undefined,
     liked: false,
   },
   {
@@ -18,7 +18,7 @@ export const recipeList = [
     description:
       'A classic Italian pasta dish made with spaghetti tossed in a creamy sauce of eggs, Pecorino Romano cheese, crispy pancetta, and black pepper. The heat from the pasta gently cooks the eggs, creating a rich and silky coating without using any cream.',
     image: '/public/images/spaghetti.jpg',
-    seen: false,
+    seen: undefined,
     liked: false,
   },
   {
@@ -29,7 +29,7 @@ export const recipeList = [
     description:
       'A simple yet flavorful Italian dish made with pasta tossed in a fresh basil pesto sauce, blended with olive oil, pine nuts, garlic, Parmesan cheese, and a hint of lemon. Perfect for a quick, light, and aromatic meal.',
     image: '/public/images/pasta-pesto.jpg',
-    seen: false,
+    seen: undefined,
     liked: false,
   },
   {
@@ -40,7 +40,7 @@ export const recipeList = [
     description:
       'A moist and sweet loaf made with ripe bananas, flour, sugar, eggs, and butter. Baked to golden perfection — perfect as a comforting breakfast, snack, or dessert.',
     image: '/public/images/bananenbrood.jpeg',
-    seen: false,
+    seen: undefined,
     liked: false,
   },
 ]

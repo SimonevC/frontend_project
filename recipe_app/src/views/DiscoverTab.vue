@@ -14,17 +14,22 @@ function showNextRecipe() {
 
 function likeCurrent() {
   store.like(currentRecipe.value)
+  store.seen(currentRecipe.value)
   showNextRecipe()
 }
 
 function dislikeCurrent() {
   store.dislike(currentRecipe.value)
+  store.seen(currentRecipe.value)
   showNextRecipe()
 }
 </script>
 
 <template>
-  <ListDetail :items="store.recipes">
+  <ListDetail :items="[currentRecipe]">
+    <div v-if="currentRecipe === null">
+      <h2>All recipes seen! 🎉</h2>
+    </div>
     <template #list_item="{ item }">
       <div class="recipe-card">
         <h3 class="recipe-title">{{ item.name }}</h3>

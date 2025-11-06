@@ -23,8 +23,12 @@ export const store = reactive({
     recipe.liked = false
   },
 
+  seen(recipe: Recipe) {
+    recipe.seen = true
+  },
+
   getUndisplayedRecipes() {
-    return store.recipes.filter((r) => r.liked === undefined)
+    return store.recipes.filter((r) => r.seen === undefined)
   },
 
   getLikedRecipes() {

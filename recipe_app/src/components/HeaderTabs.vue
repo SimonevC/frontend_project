@@ -38,49 +38,83 @@ function setCurrentTab(newTabName: string) {
 .header {
   display: flex;
   justify-content: space-between;
-  background-image: linear-gradient(
-    to bottom,
-    rgb(255, 139, 184),
-    rgb(255, 175, 206),
-    rgb(255, 196, 219)
-  );
-  height: 5em;
-  border-bottom: 1px solid #ddd;
-  box-shadow: 0 1px 6px #ddd;
-  margin-bottom: 1rem;
   align-items: center;
-  padding-inline: 2rem;
+  padding: 0 2rem;
+  height: 5rem;
+  background: linear-gradient(135deg, rgb(255, 139, 184), rgb(255, 175, 206), rgb(255, 196, 219));
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #e0e0e0;
+  border-radius: 0 0 12px 12px; /* ronde onderkant */
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-.padding {
-  padding: 2rem;
+.header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
 }
 
 nav {
   display: flex;
-  flex-direction: row;
-  max-width: 1200px;
-}
-
-header .icons {
-  display: flex;
-  margin: 1rem;
-  cursor: pointer;
-}
-header .icons > * {
-  padding: 0 6px;
+  gap: 1.5rem;
+  align-items: center;
 }
 
 .tab {
   text-transform: capitalize;
+  font-weight: 500;
+  color: #fff;
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.tab:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .active {
-  text-decoration: underline;
-  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.35);
+  text-decoration: none;
+  font-weight: 700;
 }
 
-h1 {
+header .icons {
   display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  cursor: pointer;
+}
+
+header .icons > * {
+  padding: 0.4rem;
+  transition: all 0.2s ease;
+}
+
+header .icons > *:hover {
+  transform: scale(1.1);
+  color: #fff;
+}
+
+/* kleine aanpassing voor mobiel */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+  }
+  nav {
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+  header .icons {
+    margin-top: 0.5rem;
+  }
 }
 </style>
