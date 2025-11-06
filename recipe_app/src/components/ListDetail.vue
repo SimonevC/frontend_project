@@ -48,7 +48,7 @@ function backToList() {
 
 .list_item {
   cursor: pointer;
-  border: 1px solid white;
+  /* border: 1px solid white; */
   padding: 2rem;
   margin-bottom: 1rem;
 }

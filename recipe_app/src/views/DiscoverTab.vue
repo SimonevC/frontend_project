@@ -26,18 +26,22 @@ function dislikeCurrent() {
 <template>
   <ListDetail :items="store.recipes">
     <template #list_item="{ item }">
-      <p>{{ item.name }}</p>
-      <p>
-        Cooking time: {{ item.cookingTime }} minutes, Steps: {{ item.steps }}, Meal type:
-        {{ item.mealType }}
-      </p>
-      <p>About:{{ item.description }}</p>
-      <img :src="item.image" />
+      <div class="recipe-card">
+        <h3 class="recipe-title">{{ item.name }}</h3>
+        <p class="recipe-meta">
+          Cooking time: {{ item.cookingTime }} minutes, Steps: {{ item.steps }}, Meal type:
+          {{ item.mealType }}
+        </p>
+        <p class="recipe-description">{{ item.description }}</p>
+        <img :src="item.image" class="recipe-image" />
+      </div>
     </template>
 
     <template #list_actions>
-      <PrettyButton type="like" @click="likeCurrent">Like</PrettyButton>
-      <PrettyButton type="dislike" @click="dislikeCurrent">Dislike</PrettyButton>
+      <div class="action-buttons">
+        <PrettyButton type="dislike" :fab="true" @click="dislikeCurrent">Dislike</PrettyButton>
+        <PrettyButton type="like" @click="likeCurrent">Like</PrettyButton>
+      </div>
     </template>
 
     <template v-if="currentRecipe" #details="{ items, index }">
@@ -54,10 +58,65 @@ function dislikeCurrent() {
 </template>
 
 <style lang="css" scoped>
-label {
+/* label {
   display: flex;
   flex-direction: column;
   gap: 10px;
   padding: 0.2rem;
+} */
+
+/* Card styling */
+.recipe-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem;
+  width: 90%;
+  max-width: 500px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  margin: 0 auto;
+}
+
+/* Afbeelding */
+.recipe-image {
+  width: 100%;
+  max-height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Titel */
+.recipe-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0.2rem 0;
+  text-align: center;
+  color: #111;
+}
+
+/* Meta info */
+.recipe-meta {
+  font-size: 0.9rem;
+  color: #555;
+  text-align: center;
+}
+
+/* Beschrijving */
+.recipe-description {
+  font-size: 1rem;
+  line-height: 1.4;
+  text-align: center;
+  color: #333;
+}
+
+/* Actieknoppen */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
 }
 </style>

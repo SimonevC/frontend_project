@@ -1,54 +1,56 @@
 <script setup lang="ts">
 defineProps({
-	fab: {
-		required: false,
-		type: Boolean,
-		default: false,
-	},
-});
+  fab: {
+    required: false,
+    type: Boolean,
+    default: false,
+  },
+})
 
-const emit = defineEmits(["clicked"]);
+const emit = defineEmits(['clicked'])
 
 function buttonClick() {
-	emit("clicked");
+  emit('clicked')
 }
 </script>
 
 <template>
-	<div
-		:class="{
-			fabClass: fab,
-		}"
-		class="button"
-		@click="buttonClick"
-	>
-		<slot />
-	</div>
+  <div
+    :class="{
+      fabClass: fab,
+    }"
+    class="button"
+    @click="buttonClick"
+  >
+    <slot />
+  </div>
 </template>
 
 <style scoped lang="css">
 .button {
-	border: 1px solid white;
-	background-color: rgb(139, 247, 38);
-	border-radius: 3px;
-	color: rgb(255, 255, 255);
-	cursor: pointer;
-	padding: 1rem 4rem;
-	display: inline-block;
+  border: none;
+  background-color: #4caf50; /* fris groen */
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+  padding: 0.8rem 2.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
 
 .fabClass {
-	border-radius: 50%;
-	aspect-ratio: 1/1;
-	background-color: rgb(255, 0, 0);
-	color: white;
-	cursor: pointer;
-	font-size: 2rem;
-	position: absolute;
-	display: flex;
-	bottom: 0;
-	right: 0;
-	align-items: center;
-	margin: 1rem;
+  background-color: #ff3b30; /* fel rood */
+}
+
+.fabClass:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
 }
 </style>
