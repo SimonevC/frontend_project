@@ -1,24 +1,30 @@
 <script setup lang="ts">
+import router from '@/router'
 import { ref } from 'vue'
 const { items } = defineProps(['items'])
 
 const currentItemIndex = ref<number | undefined>()
 
-function backToList() {
-  currentItemIndex.value = undefined
+function setCurrentItem(index: number) {
+  currentItemIndex.value = index
+  router.push({ path: '/liked/' + index })
 }
 </script>
 
 <template>
   <div class="container" :class="{ selected: currentItemIndex != undefined }">
     <div class="list">
-      <div class="list_item" v-bind:key="item" v-for="item in items">
-        <slot name="list_item" :item="item"></slot>
+      <div
+        class="list_item"
+        @click="() => setCurrentItem(index)"
+        v-bind:key="item"
+        v-for="(item, index) in items"
+      >
+        <slot name="list_item" :item="item" :index="index"></slot>
       </div>
       <slot name="list_actions" />
     </div>
     <div class="details">
-      <button class="back" @click="backToList">← Back</button>
       <slot name="details" :items="items" :index="currentItemIndex"></slot>
     </div>
     <slot name="detail_actions" />
@@ -46,5 +52,27 @@ function backToList() {
 
 .back {
   display: none;
+}
+
+@media (max-width: 600px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .details {
+    display: none;
+  }
+
+  .selected .details {
+    display: block;
+  }
+
+  .back {
+    display: block;
+  }
+
+  .selected .list {
+    display: none;
+  }
 }
 </style>

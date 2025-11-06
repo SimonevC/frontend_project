@@ -30,6 +30,11 @@ const router = createRouter({
       name: 'shopping',
       component: ShoppingListTab,
     },
+    {
+      path: '/liked/:id',
+      name: 'likedRecipe',
+      component: LikedRecipesTab,
+    },
   ],
 })
 

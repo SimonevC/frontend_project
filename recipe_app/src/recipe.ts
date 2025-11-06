@@ -3,6 +3,7 @@ export interface Recipe {
   cookingTime: number
   steps: number
   mealType: string
+  ingredients: 
   description: string
   image: string
   seen?: boolean
