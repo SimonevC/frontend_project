@@ -39,10 +39,10 @@ function addCurrentRecipeToShoppingList(recipe: Recipe) {
   <div class="liked-tab">
     <h2>Liked Recipes</h2>
 
-    <div class="not-liked" v-if="likedRecipes.length === 0">
+    <div class="not-liked" v-if="likedRecipes.length == 0">
       <p>You haven't liked any recipes yet!</p>
     </div>
-    <ListDetail :items="likedRecipes">
+    <ListDetail v-else :items="likedRecipes">
       <template #list_item="{ item }">
         <div class="recipe-card">
           <h3 class="recipe-title">{{ item.name }}</h3>

@@ -9,6 +9,10 @@ function setCurrentItem(index: number) {
   currentItemIndex.value = index
   router.push({ path: '/liked/' + index })
 }
+
+function backToList() {
+  currentItemIndex.value = undefined
+}
 </script>
 
 <template>
@@ -25,6 +29,7 @@ function setCurrentItem(index: number) {
       <slot name="list_actions" />
     </div>
     <div class="details">
+      <button class="back" @click="backToList">← Back</button>
       <slot name="details" :items="items" :index="currentItemIndex"></slot>
     </div>
     <slot name="detail_actions" />

@@ -34,10 +34,10 @@ usePointer((action) => {
 </script>
 
 <template>
-  <ListDetail :items="[currentRecipe]">
-    <div v-if="currentRecipe == null">
-      <h2>All recipes seen!</h2>
-    </div>
+  <div v-if="!currentRecipe">
+    <h2>All recipes seen!</h2>
+  </div>
+  <ListDetail v-else :items="[currentRecipe]">
     <template #list_item="{ item }">
       <div class="recipe-card">
         <h3 class="recipe-title">{{ item.name }}</h3>
@@ -140,5 +140,9 @@ usePointer((action) => {
 
 .rating .star.active {
   color: gold;
+}
+
+h2 {
+  margin: 2rem;
 }
 </style>

@@ -7,7 +7,7 @@ export interface Recipe {
   instructions: string[]
   description: string
   image: string
-  seen?: boolean
+  seen: boolean
   liked?: boolean
   rating: number
 }

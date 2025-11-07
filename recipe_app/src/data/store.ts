@@ -5,16 +5,16 @@ import type { Ingredient, Recipe } from '@/recipe'
 
 const recipes = localStorage.getItem('recipes')
 const shoppingStorage = localStorage.getItem('shoppingList')
-let loadFromStorage = recipeList
+const loadFromStorage: Recipe[] = recipes ? (JSON.parse(recipes) as Recipe[]) : recipeList
 const loadShoppingList: Ingredient[] = shoppingStorage ? JSON.parse(shoppingStorage) : []
+const reactiveRecipes = loadFromStorage.map((r) => reactive(r))
 
-if (recipes) {
-  loadFromStorage = JSON.parse(recipes)
-  console.log({ loadFromStorage })
-}
+// if (recipes) {
+//   loadFromStorage = JSON.parse(recipes)
+// }
 
 export const store = reactive({
-  recipes: recipes ? JSON.parse(recipes) : recipeList,
+  recipes: reactiveRecipes,
   shoppingList: reactive(loadShoppingList) as Ingredient[],
   like(recipe: Recipe) {
     recipe.liked = true
@@ -29,7 +29,7 @@ export const store = reactive({
   },
 
   getUndisplayedRecipes() {
-    return store.recipes.filter((r: Recipe) => r.seen === undefined)
+    return store.recipes.filter((r: Recipe) => r.seen === false)
   },
 
   getLikedRecipes() {
