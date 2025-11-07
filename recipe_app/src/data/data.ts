@@ -2,7 +2,7 @@ export const recipeList = [
   {
     name: 'Chocolate Lava Cake',
     cookingTime: 25,
-    steps: 5,
+    steps: 8,
     mealType: 'Dessert',
     ingredients: [
       { name: 'Dark chocolate', quantity: 115, unit: 'g' },
@@ -34,7 +34,7 @@ export const recipeList = [
   {
     name: 'Spaghetti Carbonara',
     cookingTime: 15,
-    steps: 5,
+    steps: 8,
     mealType: 'Dinner',
     ingredients: [
       { name: 'Spaghetti', quantity: 100, unit: 'g' },
@@ -67,7 +67,7 @@ export const recipeList = [
   {
     name: 'Pasta Pesto',
     cookingTime: 10,
-    steps: 4,
+    steps: 7,
     mealType: 'Dinner',
     ingredients: [
       { name: 'Pasta', quantity: 100, unit: 'g' },
@@ -98,7 +98,7 @@ export const recipeList = [
   {
     name: 'Banana Bread',
     cookingTime: 60,
-    steps: 6,
+    steps: 8,
     mealType: 'Snack',
     ingredients: [
       { name: 'Ripe bananas', quantity: 3, unit: 'medium' },

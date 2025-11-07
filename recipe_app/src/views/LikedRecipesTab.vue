@@ -1,10 +1,28 @@
 <script setup lang="ts">
 import ListDetail from '@/components/ListDetail.vue'
 import PrettyButton from '@/components/PrettyButton.vue'
+import { useShareRecipe } from '@/components/Share'
 import { store } from '@/data/store'
-import { computed } from 'vue'
+import type { Recipe } from '@/recipe'
+import { computed, ref } from 'vue'
 
 const likedRecipes = computed(() => store.getLikedRecipes())
+const people = ref(1)
+
+function unlikeRecipe(recipe: Recipe) {
+  store.dislike(recipe) // zet liked = false
+}
+
+const { shareRecipe } = useShareRecipe()
+
+function shareCurrentRecipe(item: Recipe, index: number) {
+  const url = window.location.origin + '/liked/' + index
+  shareRecipe(item.name, 'Look at this cool recipe I found on my recipe app!', url)
+}
+
+function setRating(recipe: Recipe, value: number) {
+  recipe.rating = value
+}
 </script>
 
 <template>
@@ -28,9 +46,41 @@ const likedRecipes = computed(() => store.getLikedRecipes())
 
       <template #details="{ items, index }">
         <template v-if="index != undefined">
-          <label>Name<input v-model="items[index].name" /></label>
-          <label>Description<input v-model="items[index].description" /></label>
-          <label>Image<img :src="items[index].image" /></label>
+          <h3>{{ items[index].name }}</h3>
+          <p>Cooking Time: {{ items[index].cookingTime }} Minutes</p>
+          <label><img :src="items[index].image" class="recipe-image" /></label>
+          <h4>Ingredients:</h4>
+          <div
+            class="ingredients"
+            v-for="ingredient in items[index].ingredients"
+            v-bind:key="ingredient.name"
+          >
+            <p>{{ ingredient.quantity * people }} {{ ingredient.unit }} {{ ingredient.name }}</p>
+          </div>
+          <h4>For how many people do you want to make your recipe?</h4>
+          <input id="people" type="number" v-model.number="people" min="1" />
+          <h4>Instructions:</h4>
+          <li v-for="(step, stepIndex) in items[index].instructions" :key="stepIndex">
+            {{ step }}
+          </li>
+          <h4>Rate Recipe</h4>
+          <div class="rating">
+            <span
+              v-for="star in 5"
+              :key="star"
+              class="star"
+              :class="{ active: star <= items[index].rating }"
+              @click="setRating(items[index], star)"
+            >
+              ★
+            </span>
+          </div>
+          <PrettyButton type="share" @click="shareCurrentRecipe(items[index], index)"
+            >Share Recipe</PrettyButton
+          >
+          <PrettyButton type="unlike" :fab="true" @click="() => unlikeRecipe(items[index])"
+            >Unlike Recipe</PrettyButton
+          >
         </template>
       </template>
     </ListDetail>
@@ -89,11 +139,43 @@ const likedRecipes = computed(() => store.getLikedRecipes())
   color: #111;
 }
 
+.ingredients {
+  margin-bottom: 1rem;
+}
+
+.rating {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.star {
+  cursor: pointer;
+  color: #ccc;
+  transition: color 0.2s;
+}
+
+.star.active {
+  color: gold;
+}
+
 h3 {
   font-size: 1.3rem;
   margin: 0.5rem 0;
   text-align: center;
   color: #c2185b; /* iets anders dan op eerste pagina */
+}
+
+h4 {
+  font-size: 1.25rem; /* iets groter dan standaard */
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+  letter-spacing: 0.3px;
+
+  /* zachte underline / accent */
+  position: relative;
+  padding-bottom: 0.25rem;
 }
 
 .meta {

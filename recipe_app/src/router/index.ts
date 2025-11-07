@@ -1,4 +1,3 @@
-import DiscoverTab from '@/views/DiscoverTab.vue'
 import LikedRecipesTab from '@/views/LikedRecipesTab.vue'
 import ShoppingListTab from '@/views/ShoppingListTab.vue'
 import { createRouter, createWebHistory } from 'vue-router'
@@ -18,7 +17,7 @@ const router = createRouter({
     {
       path: '/discover',
       name: 'discover',
-      component: DiscoverTab,
+      component: () => import('@/views/DiscoverTab.vue'),
     },
     {
       path: '/liked',

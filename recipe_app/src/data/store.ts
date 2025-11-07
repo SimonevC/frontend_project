@@ -11,10 +11,10 @@ if (recipes) {
   console.log({ loadFromStorage })
 }
 
-const reactiveRecipes = loadFromStorage.map((r) => reactive(r))
+// const reactiveRecipes = loadFromStorage.map((r) => reactive(r))
 
 export const store = reactive({
-  recipes: reactiveRecipes,
+  recipes: recipes ? JSON.parse(recipes) : recipeList,
   like(recipe: Recipe) {
     recipe.liked = true
   },
