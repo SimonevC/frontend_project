@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import ListDetail from '@/components/ListDetail.vue'
 import PrettyButton from '@/components/PrettyButton.vue'
+import { usePointer } from '@/components/Touch'
 import { store } from '@/data/store'
 import { ref } from 'vue'
+
+export type Action = 'right' | 'left'
 
 const currentRecipe = ref(store.getUndisplayedRecipes()[0])
 
@@ -23,6 +26,11 @@ function dislikeCurrent() {
   store.seen(currentRecipe.value)
   showNextRecipe()
 }
+
+usePointer((action) => {
+  if (action === 'right') likeCurrent()
+  if (action === 'left') dislikeCurrent()
+})
 </script>
 
 <template>
@@ -60,17 +68,6 @@ function dislikeCurrent() {
         <PrettyButton type="like" @click="likeCurrent">Like</PrettyButton>
       </div>
     </template>
-
-    <!-- <template v-if="currentRecipe" #details="{ items, index }">
-      <template v-if="index != undefined">
-        <label>Name<input v-model="items[index].name" /></label>
-        <label>Cooking time<input v-model="items[index].cookingTime" /></label>
-        <label>Steps<input v-model="items[index].steps" /></label>
-        <label>Meal Type<input v-model="items[index].mealType" /></label>
-        <label>Description<input v-model="items[index].description" /></label>
-        <label>Image<img :src="items[index].image" /></label>
-      </template>
-    </template> -->
   </ListDetail>
 </template>
 

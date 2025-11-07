@@ -10,7 +10,7 @@ const likedRecipes = computed(() => store.getLikedRecipes())
 const people = ref(1)
 
 function unlikeRecipe(recipe: Recipe) {
-  store.dislike(recipe) // zet liked = false
+  store.dislike(recipe)
 }
 
 const { shareRecipe } = useShareRecipe()
@@ -59,7 +59,7 @@ function addCurrentRecipeToShoppingList(recipe: Recipe) {
                 >★</span
               >
             </template>
-            <span v-else>Has no rating yet</span>
+            <span class="no-rating" v-else>Has no rating yet</span>
           </div>
           <img :src="item.image" class="recipe-image" />
           <PrettyButton type="recipe">View Recipe</PrettyButton>
@@ -116,11 +116,11 @@ function addCurrentRecipeToShoppingList(recipe: Recipe) {
 .recipe-card {
   display: flex;
   flex-direction: column;
-  background-color: #fff7f9; /* lichte achtergrond, anders dan eerste pagina */
+  background-color: #fff7f9;
   color: #333;
-  border: 2px solid #ffb6c1; /* opvallende maar zachte rand */
+  border: 2px solid #ffb6c1;
   border-radius: 16px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08); /* subtiele schaduw */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
   padding: 1rem;
   width: 100%;
   max-width: 350px;
@@ -141,7 +141,7 @@ function addCurrentRecipeToShoppingList(recipe: Recipe) {
 
 .recipe-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* iets sterker bij hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .recipe-image {
@@ -150,7 +150,7 @@ function addCurrentRecipeToShoppingList(recipe: Recipe) {
   object-fit: cover;
   border-radius: 12px;
   margin-bottom: 1rem;
-  border: 1px solid #ffd6e0; /* dun randje om de afbeelding */
+  border: 1px solid #ffd6e0;
 }
 
 .recipe-meta {
@@ -159,7 +159,6 @@ function addCurrentRecipeToShoppingList(recipe: Recipe) {
   text-align: center;
 }
 
-/* Titel */
 .recipe-title {
   font-size: 1.5rem;
   font-weight: bold;
@@ -178,6 +177,10 @@ function addCurrentRecipeToShoppingList(recipe: Recipe) {
   margin-left: 4rem;
 }
 
+.no-rating {
+  font-size: 1rem;
+}
+
 .star {
   cursor: pointer;
   color: #ccc;
@@ -192,18 +195,16 @@ h3 {
   font-size: 1.3rem;
   margin: 0.5rem 0;
   text-align: center;
-  color: #c2185b; /* iets anders dan op eerste pagina */
+  color: #c2185b;
 }
 
 h4 {
-  font-size: 1.25rem; /* iets groter dan standaard */
+  font-size: 1.25rem;
   font-weight: 600;
   margin-top: 1.5rem;
   margin-bottom: 0.5rem;
   color: #333;
   letter-spacing: 0.3px;
-
-  /* zachte underline / accent */
   position: relative;
   padding-bottom: 0.25rem;
 }
@@ -223,7 +224,6 @@ h4 {
   margin-bottom: 1rem;
 }
 
-/* Grid layout via ListDetail wrapper */
 .list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));

@@ -56,7 +56,7 @@ h2 {
 
 .list-item {
   padding: 1rem;
-  background-color: #ffe6f0; /* zacht roze */
+  background-color: #ffe6f0;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   display: flex;
