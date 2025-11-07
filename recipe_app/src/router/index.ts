@@ -1,4 +1,3 @@
-import LikedRecipesTab from '@/views/LikedRecipesTab.vue'
 import ShoppingListTab from '@/views/ShoppingListTab.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
@@ -22,7 +21,7 @@ const router = createRouter({
     {
       path: '/liked',
       name: 'liked',
-      component: LikedRecipesTab,
+      component: () => import('@/views/LikedRecipesTab.vue'),
     },
     {
       path: '/shopping',
@@ -32,7 +31,7 @@ const router = createRouter({
     {
       path: '/liked/:id',
       name: 'likedRecipe',
-      component: LikedRecipesTab,
+      component: () => import('@/views/LikedRecipesTab.vue'),
     },
   ],
 })

@@ -53,7 +53,7 @@ function setCurrentTab(newTabName: string) {
 .header h1 {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #fff;
+  color: black;
   margin: 0;
 }
 
@@ -88,6 +88,7 @@ header .icons {
   align-items: center;
   gap: 0.8rem;
   cursor: pointer;
+  color: black;
 }
 
 header .icons > * {
@@ -100,7 +101,6 @@ header .icons > *:hover {
   color: #fff;
 }
 
-/* kleine aanpassing voor mobiel */
 @media (max-width: 768px) {
   .header {
     flex-direction: column;

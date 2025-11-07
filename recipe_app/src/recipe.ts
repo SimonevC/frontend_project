@@ -4,6 +4,7 @@ export interface Recipe {
   steps: number
   mealType: string
   ingredients: Ingredient[]
+  basic_people: number
   instructions: string[]
   description: string
   image: string

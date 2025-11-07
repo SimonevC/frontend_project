@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test.beforeEach(async ({ page }) => {
-  await page.goto('/')
+  await page.goto('http://localhost:5173/discover')
 })
 
 test('has header', async ({ page }) => {
@@ -9,20 +9,17 @@ test('has header', async ({ page }) => {
 })
 
 test('like recipe and find recipe on liked recipes page', async ({ page }) => {
-  await page.goto('http://localhost:5174/discover')
   await page.getByText('Like', { exact: true }).click()
   await page.getByText('liked').click()
   await expect(page.getByText('Chocolate Lava Cake Cooking')).toBeVisible()
 })
 
 test('dislike recipe and expect to not be visible', async ({ page }) => {
-  await page.goto('http://localhost:5174/discover')
   await page.getByText('Dislike').click()
   await expect(page.getByText('Chocolate Lava Cake Cooking')).toBeHidden()
 })
 
 test('view recipe on liked recipe page', async ({ page }) => {
-  await page.goto('http://localhost:5174/discover')
   await page.getByText('Like', { exact: true }).click()
   await page.getByText('liked').click()
   await page.getByText('View Recipe').click()
@@ -30,7 +27,6 @@ test('view recipe on liked recipe page', async ({ page }) => {
 })
 
 test('add ingredients to shopping list', async ({ page }) => {
-  await page.goto('http://localhost:5174/discover')
   await page.getByText('Like', { exact: true }).click()
   await page.getByText('liked').click()
   await page.getByText('View Recipe').click()
@@ -40,11 +36,10 @@ test('add ingredients to shopping list', async ({ page }) => {
   })
   await page.getByText('Add to Shopping List').click()
   await page.getByText('shopping', { exact: true }).click()
-  await expect(page.getByText('115 g Dark chocolate113 g')).toBeVisible()
+  await expect(page.getByText('230 g Dark chocolate226 g')).toBeVisible()
 })
 
 test('remove ingredients from shopping list and get empty shopping list', async ({ page }) => {
-  await page.goto('http://localhost:5174/discover')
   await page.getByText('Like', { exact: true }).click()
   await page.getByText('liked').click()
   await page.getByText('View Recipe').click()

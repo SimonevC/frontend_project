@@ -14,8 +14,9 @@ export const recipeList = [
       { name: 'Salt', quantity: 1, unit: 'pinch' },
       { name: 'Vanilla extract (optional)', quantity: 1, unit: 'tsp' },
     ],
+    basic_people: 2,
     instructions: [
-      'Preheat the oven to 220°C (425°F) and butter 4 ramekins.',
+      'Preheat the oven to 220°C and butter 4 ramekins.',
       'Melt the chocolate and butter together, then let it cool slightly.',
       'Whisk the eggs, egg yolks, and sugar until pale and slightly thickened.',
       'Fold the melted chocolate mixture into the eggs.',
@@ -47,6 +48,7 @@ export const recipeList = [
       { name: 'Black pepper', quantity: 1, unit: 'pinch' },
       { name: 'Reserved pasta water', quantity: 2, unit: 'tbsp' },
     ],
+    basic_people: 4,
     instructions: [
       'Bring a large pot of salted water to a boil and cook the spaghetti according to package instructions.',
       'While the pasta cooks, fry the pancetta (or guanciale) in a pan until crispy. Remove from heat.',
@@ -79,6 +81,7 @@ export const recipeList = [
       { name: 'Salt', quantity: 1, unit: 'pinch' },
       { name: 'Black pepper', quantity: 1, unit: 'pinch' },
     ],
+    basic_people: 4,
     instructions: [
       'Bring a large pot of salted water to a boil and cook the pasta according to package instructions.',
       'While the pasta cooks, prepare the pesto by blending fresh basil leaves, pine nuts, garlic, Parmesan cheese, and olive oil until smooth.',
@@ -110,8 +113,9 @@ export const recipeList = [
       { name: 'Salt', quantity: 0.5, unit: 'tsp' },
       { name: 'Vanilla extract', quantity: 1, unit: 'tsp' },
     ],
+    basic_people: 4,
     instructions: [
-      'Preheat the oven to 175°C (350°F) and grease a loaf pan.',
+      'Preheat the oven to 175°C and grease a loaf pan.',
       'In a bowl, mash ripe bananas until smooth.',
       'Mix in melted butter, sugar, eggs, and vanilla extract until combined.',
       'Sift in the flour, baking soda, and salt, and gently fold into the banana mixture.',

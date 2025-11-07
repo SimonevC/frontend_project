@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import ListDetail from '@/components/ListDetail.vue'
 import PrettyButton from '@/components/PrettyButton.vue'
 import { usePointer } from '@/components/Touch'
 import { store } from '@/data/store'
@@ -37,38 +36,34 @@ usePointer((action) => {
   <div v-if="!currentRecipe">
     <h2>All recipes seen!</h2>
   </div>
-  <ListDetail v-else :items="[currentRecipe]">
-    <template #list_item="{ item }">
-      <div class="recipe-card">
-        <h3 class="recipe-title">{{ item.name }}</h3>
-        <p class="recipe-meta">
-          Cooking time: {{ item.cookingTime }} minutes, Steps: {{ item.steps }}, Meal type:
-          {{ item.mealType }}
-        </p>
-        <div class="rating">
-          <template v-if="item.rating >= 1">
-            <span
-              v-for="star in 5"
-              :key="star"
-              class="star"
-              :class="{ active: star <= item.rating }"
-              >★</span
-            >
-          </template>
-          <span v-else>Has no rating yet</span>
-        </div>
-        <p class="recipe-description">{{ item.description }}</p>
-        <img :src="item.image" class="recipe-image" />
+  <div v-else :items="[currentRecipe]">
+    <div class="recipe-card">
+      <h3 class="recipe-title">{{ currentRecipe.name }}</h3>
+      <p class="recipe-meta">
+        Cooking time: {{ currentRecipe.cookingTime }} minutes, Steps: {{ currentRecipe.steps }},
+        Meal type:
+        {{ currentRecipe.mealType }}
+      </p>
+      <div class="rating">
+        <template v-if="currentRecipe.rating >= 1">
+          <span
+            v-for="star in 5"
+            :key="star"
+            class="star"
+            :class="{ active: star <= currentRecipe.rating }"
+            >★</span
+          >
+        </template>
+        <span v-else>Has no rating yet</span>
       </div>
-    </template>
-
-    <template #list_actions>
-      <div class="action-buttons">
-        <PrettyButton type="dislike" :fab="true" @click="dislikeCurrent">Dislike</PrettyButton>
-        <PrettyButton type="like" @click="likeCurrent">Like</PrettyButton>
-      </div>
-    </template>
-  </ListDetail>
+      <p class="recipe-description">{{ currentRecipe.description }}</p>
+      <img :src="currentRecipe.image" class="recipe-image" />
+    </div>
+    <div class="action-buttons">
+      <PrettyButton type="dislike" :fab="true" @click="dislikeCurrent">Dislike</PrettyButton>
+      <PrettyButton type="like" @click="likeCurrent">Like</PrettyButton>
+    </div>
+  </div>
 </template>
 
 <style lang="css" scoped>
@@ -94,6 +89,7 @@ usePointer((action) => {
   border-radius: 16px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   margin: 0 auto;
+  margin-top: 2rem;
 }
 
 .recipe-image {

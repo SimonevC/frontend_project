@@ -1,38 +1,11 @@
 <script setup lang="ts">
 import ListDetail from '@/components/ListDetail.vue'
 import PrettyButton from '@/components/PrettyButton.vue'
-import { useShareRecipe } from '@/components/Share'
+import RecipeView from './RecipeView.vue'
 import { store } from '@/data/store'
-import type { Recipe } from '@/recipe'
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 
 const likedRecipes = computed(() => store.getLikedRecipes())
-const people = ref(1)
-
-function unlikeRecipe(recipe: Recipe) {
-  store.dislike(recipe)
-}
-
-const { shareRecipe } = useShareRecipe()
-
-function shareCurrentRecipe(item: Recipe, index: number) {
-  const url = window.location.origin + '/liked/' + index
-  shareRecipe(item.name, 'Look at this cool recipe I found on my recipe app!', url)
-}
-
-function setRating(recipe: Recipe, value: number) {
-  recipe.rating = value
-}
-
-function addCurrentRecipeToShoppingList(recipe: Recipe) {
-  const adjustedIngredients = recipe.ingredients.map((ing) => ({
-    ...ing,
-    quantity: ing.quantity * people.value,
-  }))
-
-  store.addToShoppingList(adjustedIngredients)
-  alert('Added to shopping list!')
-}
 </script>
 
 <template>
@@ -67,60 +40,7 @@ function addCurrentRecipeToShoppingList(recipe: Recipe) {
       </template>
 
       <template #details="{ items, index }">
-        <template v-if="index != undefined">
-          <h3>{{ items[index].name }}</h3>
-          <p>Cooking Time: {{ items[index].cookingTime }} Minutes</p>
-          <label><img :src="items[index].image" class="recipe-image" /></label>
-          <h4>Ingredients:</h4>
-          <div
-            class="ingredients"
-            v-for="ingredient in items[index].ingredients"
-            v-bind:key="ingredient.name"
-          >
-            <p>{{ ingredient.quantity * people }} {{ ingredient.unit }} {{ ingredient.name }}</p>
-          </div>
-          <h4>For how many people do you want to make your recipe?</h4>
-          <input
-            id="people"
-            type="number"
-            v-model.number="people"
-            min="1"
-            style="display: block; margin-bottom: 0.5rem"
-          />
-          <PrettyButton
-            type="shopping"
-            :small="true"
-            @click="addCurrentRecipeToShoppingList(items[index])"
-          >
-            Add to Shopping List
-          </PrettyButton>
-          <h4>Instructions:</h4>
-          <li v-for="(step, stepIndex) in items[index].instructions" :key="stepIndex">
-            {{ step }}
-          </li>
-          <h4>Rate Recipe</h4>
-          <div class="rating">
-            <span
-              v-for="star in 5"
-              :key="star"
-              class="star"
-              :class="{ active: star <= items[index].rating }"
-              @click="setRating(items[index], star)"
-            >
-              ★
-            </span>
-          </div>
-          <PrettyButton type="share" :small="true" @click="shareCurrentRecipe(items[index], index)"
-            >Share Recipe</PrettyButton
-          >
-          <PrettyButton
-            type="unlike"
-            :small="true"
-            :fab="true"
-            @click="() => unlikeRecipe(items[index])"
-            >Unlike Recipe</PrettyButton
-          >
-        </template>
+        <RecipeView v-if="index != undefined" :item="items[index]"></RecipeView>
       </template>
     </ListDetail>
   </div>
@@ -158,15 +78,6 @@ function addCurrentRecipeToShoppingList(recipe: Recipe) {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-.recipe-image {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 1rem;
-  border: 1px solid #ffd6e0;
-}
-
 .recipe-meta {
   font-size: 0.9rem;
   color: #555;
@@ -179,6 +90,15 @@ function addCurrentRecipeToShoppingList(recipe: Recipe) {
   margin: 0.2rem 0;
   text-align: center;
   color: #111;
+}
+
+.recipe-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  border: 1px solid #ffd6e0;
 }
 
 .ingredients {
