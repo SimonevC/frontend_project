@@ -80,8 +80,18 @@ function addCurrentRecipeToShoppingList(recipe: Recipe) {
             <p>{{ ingredient.quantity * people }} {{ ingredient.unit }} {{ ingredient.name }}</p>
           </div>
           <h4>For how many people do you want to make your recipe?</h4>
-          <input id="people" type="number" v-model.number="people" min="1" />
-          <PrettyButton type="shopping" @click="addCurrentRecipeToShoppingList(items[index])">
+          <input
+            id="people"
+            type="number"
+            v-model.number="people"
+            min="1"
+            style="display: block; margin-bottom: 0.5rem"
+          />
+          <PrettyButton
+            type="shopping"
+            :small="true"
+            @click="addCurrentRecipeToShoppingList(items[index])"
+          >
             Add to Shopping List
           </PrettyButton>
           <h4>Instructions:</h4>
@@ -100,10 +110,14 @@ function addCurrentRecipeToShoppingList(recipe: Recipe) {
               ★
             </span>
           </div>
-          <PrettyButton type="share" @click="shareCurrentRecipe(items[index], index)"
+          <PrettyButton type="share" :small="true" @click="shareCurrentRecipe(items[index], index)"
             >Share Recipe</PrettyButton
           >
-          <PrettyButton type="unlike" :fab="true" @click="() => unlikeRecipe(items[index])"
+          <PrettyButton
+            type="unlike"
+            :small="true"
+            :fab="true"
+            @click="() => unlikeRecipe(items[index])"
             >Unlike Recipe</PrettyButton
           >
         </template>

@@ -5,6 +5,11 @@ defineProps({
     type: Boolean,
     default: false,
   },
+  small: {
+    required: false,
+    type: Boolean,
+    default: false,
+  },
 })
 
 const emit = defineEmits(['clicked'])
@@ -18,6 +23,7 @@ function buttonClick() {
   <div
     :class="{
       fabClass: fab,
+      smallClass: small,
     }"
     class="button"
     @click="buttonClick"
@@ -46,11 +52,19 @@ function buttonClick() {
 }
 
 .fabClass {
-  background-color: #ff3b30; /* fel rood */
+  background-color: #ff3b30;
 }
 
 .fabClass:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.smallClass {
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  text-align: center;
 }
 </style>
