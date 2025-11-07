@@ -29,7 +29,7 @@ export const recipeList = [
     image: '/public/images/lava-cake.jpg',
     seen: undefined,
     liked: false,
-    rating: 0,
+    rating: 4,
   },
   {
     name: 'Spaghetti Carbonara',
@@ -125,6 +125,6 @@ export const recipeList = [
     image: '/public/images/bananenbrood.jpeg',
     seen: undefined,
     liked: false,
-    rating: 0,
+    rating: 5,
   },
 ]

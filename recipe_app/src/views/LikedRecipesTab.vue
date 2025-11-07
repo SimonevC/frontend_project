@@ -23,13 +23,23 @@ function shareCurrentRecipe(item: Recipe, index: number) {
 function setRating(recipe: Recipe, value: number) {
   recipe.rating = value
 }
+
+function addCurrentRecipeToShoppingList(recipe: Recipe) {
+  const adjustedIngredients = recipe.ingredients.map((ing) => ({
+    ...ing,
+    quantity: ing.quantity * people.value,
+  }))
+
+  store.addToShoppingList(adjustedIngredients)
+  alert('Added to shopping list!')
+}
 </script>
 
 <template>
   <div class="liked-tab">
     <h2>Liked Recipes</h2>
 
-    <div v-if="likedRecipes.length === 0">
+    <div class="not-liked" v-if="likedRecipes.length === 0">
       <p>You haven't liked any recipes yet!</p>
     </div>
     <ListDetail :items="likedRecipes">
@@ -39,6 +49,18 @@ function setRating(recipe: Recipe, value: number) {
           <p class="recipe-meta">
             Cooking time: {{ item.cookingTime }} minutes • Steps: {{ item.steps }}
           </p>
+          <div class="rating">
+            <template v-if="item.rating >= 1">
+              <span
+                v-for="star in 5"
+                :key="star"
+                class="star"
+                :class="{ active: star <= item.rating }"
+                >★</span
+              >
+            </template>
+            <span v-else>Has no rating yet</span>
+          </div>
           <img :src="item.image" class="recipe-image" />
           <PrettyButton type="recipe">View Recipe</PrettyButton>
         </div>
@@ -59,6 +81,9 @@ function setRating(recipe: Recipe, value: number) {
           </div>
           <h4>For how many people do you want to make your recipe?</h4>
           <input id="people" type="number" v-model.number="people" min="1" />
+          <PrettyButton type="shopping" @click="addCurrentRecipeToShoppingList(items[index])">
+            Add to Shopping List
+          </PrettyButton>
           <h4>Instructions:</h4>
           <li v-for="(step, stepIndex) in items[index].instructions" :key="stepIndex">
             {{ step }}
@@ -110,6 +135,10 @@ function setRating(recipe: Recipe, value: number) {
   margin-top: 1rem;
 }
 
+.not-liked > p {
+  margin: 2rem;
+}
+
 .recipe-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* iets sterker bij hover */
@@ -146,6 +175,7 @@ function setRating(recipe: Recipe, value: number) {
 .rating {
   font-size: 2rem;
   margin-bottom: 1rem;
+  margin-left: 4rem;
 }
 
 .star {

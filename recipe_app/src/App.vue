@@ -14,4 +14,8 @@ function checkOnline() {
   <h5>{{ checkOnline() }}</h5>
 </template>
 
-<style scoped></style>
+<style scoped>
+h5 {
+  margin: 2rem;
+}
+</style>

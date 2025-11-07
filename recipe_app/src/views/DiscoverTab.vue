@@ -37,6 +37,18 @@ function dislikeCurrent() {
           Cooking time: {{ item.cookingTime }} minutes, Steps: {{ item.steps }}, Meal type:
           {{ item.mealType }}
         </p>
+        <div class="rating">
+          <template v-if="item.rating >= 1">
+            <span
+              v-for="star in 5"
+              :key="star"
+              class="star"
+              :class="{ active: star <= item.rating }"
+              >★</span
+            >
+          </template>
+          <span v-else>Has no rating yet</span>
+        </div>
         <p class="recipe-description">{{ item.description }}</p>
         <img :src="item.image" class="recipe-image" />
       </div>
@@ -63,24 +75,16 @@ function dislikeCurrent() {
 </template>
 
 <style lang="css" scoped>
-/* label {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 0.2rem;
-} */
-
 .discover-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: center; /* verticale centrering */
+  justify-content: center;
   align-items: center;
-  min-height: 70vh; /* vult een groot deel van het scherm */
+  min-height: 70vh;
   padding: 2rem;
   gap: 1rem;
 }
 
-/* Card styling */
 .recipe-card {
   display: flex;
   flex-direction: column;
@@ -95,7 +99,6 @@ function dislikeCurrent() {
   margin: 0 auto;
 }
 
-/* Afbeelding */
 .recipe-image {
   width: 100%;
   max-height: 180px;
@@ -103,7 +106,6 @@ function dislikeCurrent() {
   border-radius: 12px;
 }
 
-/* Titel */
 .recipe-title {
   font-size: 1.5rem;
   font-weight: bold;
@@ -112,14 +114,12 @@ function dislikeCurrent() {
   color: #111;
 }
 
-/* Meta info */
 .recipe-meta {
   font-size: 0.9rem;
   color: #555;
   text-align: center;
 }
 
-/* Beschrijving */
 .recipe-description {
   font-size: 1rem;
   line-height: 1.4;
@@ -127,11 +127,21 @@ function dislikeCurrent() {
   color: #333;
 }
 
-/* Actieknoppen */
 .action-buttons {
   display: flex;
   justify-content: center;
   gap: 1.5rem;
   margin-top: 1rem;
+}
+
+.rating {
+  display: flex;
+  gap: 2px;
+  font-size: 1.2rem;
+  color: #ddd;
+}
+
+.rating .star.active {
+  color: gold;
 }
 </style>
