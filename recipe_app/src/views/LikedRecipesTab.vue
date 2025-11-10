@@ -78,12 +78,6 @@ const likedRecipes = computed(() => store.getLikedRecipes())
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-.recipe-meta {
-  font-size: 0.9rem;
-  color: #555;
-  text-align: center;
-}
-
 .recipe-title {
   font-size: 1.5rem;
   font-weight: bold;
@@ -99,10 +93,6 @@ const likedRecipes = computed(() => store.getLikedRecipes())
   border-radius: 12px;
   margin-bottom: 1rem;
   border: 1px solid #ffd6e0;
-}
-
-.ingredients {
-  margin-bottom: 1rem;
 }
 
 .rating {
@@ -141,28 +131,6 @@ h4 {
   letter-spacing: 0.3px;
   position: relative;
   padding-bottom: 0.25rem;
-}
-
-.meta {
-  font-size: 0.95rem;
-  color: #555;
-  text-align: center;
-  margin-bottom: 0.5rem;
-}
-
-.description {
-  font-size: 1rem;
-  line-height: 1.5;
-  color: #333;
-  text-align: justify;
-  margin-bottom: 1rem;
-}
-
-.list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
-  justify-items: center;
 }
 
 @media (max-width: 600px) {

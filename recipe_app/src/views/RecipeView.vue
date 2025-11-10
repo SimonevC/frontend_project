@@ -40,7 +40,9 @@ function addCurrentRecipeToShoppingList(recipe: Recipe) {
   <label><img :src="item.image" class="recipe-image" /></label>
   <h4>Ingredients:</h4>
   <div class="ingredients" v-for="ingredient in item.ingredients" v-bind:key="ingredient.name">
-    <p>{{ ingredient.quantity * people }} {{ ingredient.unit }} {{ ingredient.name }}</p>
+    <p>
+      {{ Math.round(ingredient.quantity * people) }} {{ ingredient.unit }} {{ ingredient.name }}
+    </p>
   </div>
   <h4>Basic recipe is for {{ item.basic_people }} people</h4>
   <h4>For how many people do you want to make your recipe?</h4>
@@ -79,49 +81,9 @@ function addCurrentRecipeToShoppingList(recipe: Recipe) {
 </template>
 
 <style lang="css" scoped>
-.recipe-card {
-  display: flex;
-  flex-direction: column;
-  background-color: #fff7f9;
-  color: #333;
-  border: 2px solid #ffb6c1;
-  border-radius: 16px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
-  padding: 1rem;
-  width: 100%;
-  max-width: 350px;
-  margin: 1rem;
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s;
-}
-
-.liked-tab > h2 {
-  margin-left: 3rem;
-  margin-top: 1rem;
-}
-
-.not-liked > p {
-  margin: 2rem;
-}
-
 .recipe-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-.recipe-meta {
-  font-size: 0.9rem;
-  color: #555;
-  text-align: center;
-}
-
-.recipe-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin: 0.2rem 0;
-  text-align: center;
-  color: #111;
 }
 
 .recipe-image {
@@ -130,6 +92,7 @@ function addCurrentRecipeToShoppingList(recipe: Recipe) {
   object-fit: cover;
   border-radius: 12px;
   margin-bottom: 1rem;
+  margin-top: 1rem;
   border: 1px solid #ffd6e0;
 }
 
@@ -141,10 +104,6 @@ function addCurrentRecipeToShoppingList(recipe: Recipe) {
   font-size: 2rem;
   margin-bottom: 1rem;
   margin-left: 4rem;
-}
-
-.no-rating {
-  font-size: 1rem;
 }
 
 .star {
@@ -169,37 +128,9 @@ h4 {
   font-weight: 600;
   margin-top: 1.5rem;
   margin-bottom: 0.5rem;
-  color: #333;
+  color: #c2185b;
   letter-spacing: 0.3px;
   position: relative;
   padding-bottom: 0.25rem;
-}
-
-.meta {
-  font-size: 0.95rem;
-  color: #555;
-  text-align: center;
-  margin-bottom: 0.5rem;
-}
-
-.description {
-  font-size: 1rem;
-  line-height: 1.5;
-  color: #333;
-  text-align: justify;
-  margin-bottom: 1rem;
-}
-
-.list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
-  justify-items: center;
-}
-
-@media (max-width: 600px) {
-  .list {
-    grid-template-columns: 1fr;
-  }
 }
 </style>
